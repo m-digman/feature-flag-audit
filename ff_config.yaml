@@ -1,2 +1,4 @@
 - launchdarkly:
     token: api-my-token
+    project: my-project
+    environment: my-environment
