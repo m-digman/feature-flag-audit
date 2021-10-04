@@ -15,7 +15,7 @@ class ff_config(object):
             ff_config = yaml.safe_load(config_file)
             self.__api_token = ff_config[0]["launchdarkly"]["token"]
             self.__project_key = ff_config[0]["launchdarkly"]["project"]
-            self.__environment_key = ff_config[0]["launchdarkly"]["environment"]
+            self.__environment_keys = ff_config[0]["launchdarkly"]["environment"].split(",")
 
 
     @property
@@ -29,5 +29,5 @@ class ff_config(object):
 
 
     @property
-    def environment_key(self):
-        return self.__environment_key
+    def environment_keys(self):
+        return self.__environment_keys

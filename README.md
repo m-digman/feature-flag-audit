@@ -27,7 +27,7 @@ Edit ff_config.yaml and set the token. Example:
 Set the project and envronment values to the keys that are configured in LaunchDarkly.
 
 ## audit.py
-Extracts the following data for each feature flag configured in LaunchDarkly
+Extracts the following fields for each feature flag configured in LaunchDarkly in to a .CSV file:
 - Key
 - On
 - Last modified (days)
@@ -38,7 +38,7 @@ Extracts the following data for each feature flag configured in LaunchDarkly
 - Description
 - Tags
 
-The owner is taken from the first part of the email address, everything before @domain. Last modified days is calcuated from today. If a feature flag has never been evaluated, then the Last evaluated value will be blank and 0 means it was evaluated today.
+The owner is taken from the first part of the email address, everything before @domain. Last modified days is calcuated from today. If a feature flag has never been evaluated, then the Last evaluated value will be blank and 0 means it was evaluated today. The file is created in the "data" folder and named "<environment-key>-feature-flags-<yyyy-mm-dd>".CSV
 
 # Run
 Generates a .CSV file listing the feature flags configured in LaunchDarkly, for the project and environment defined in ff_config.yaml
