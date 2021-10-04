@@ -5,7 +5,7 @@ Extract LaunchDarkly feature flags to understand what to clean up
 - Python 3.9
 
 # Configuration Setup
-The LaunchDarkly authentication and project settings are stored in ff_config.yaml
+The LaunchDarkly authentication and project settings are stored in **ff_config.yaml**
 
 To stop any changes to this file getting back into Git use:
 ```
@@ -24,7 +24,10 @@ Edit ff_config.yaml and set the token. Example:
     environment: my-environment
 ```
 
-Set the project and envronment values to the keys that are configured in LaunchDarkly.
+Set the project and environment values to the keys that are configured in LaunchDarkly. Environment can be a comma delimited list of values, example:
+```yaml
+    environment: my-environment,other-env
+```
 
 ## audit.py
 Extracts the following fields for each feature flag configured in LaunchDarkly in to a .CSV file:
@@ -38,7 +41,7 @@ Extracts the following fields for each feature flag configured in LaunchDarkly i
 - Description
 - Tags
 
-The owner is taken from the first part of the email address, everything before @domain. Last modified days is calcuated from today. If a feature flag has never been evaluated, then the Last evaluated value will be blank and 0 means it was evaluated today. The file is created in the "data" folder and named "<environment-key>-feature-flags-<yyyy-mm-dd>".CSV
+The owner is taken from the first part of the email address, everything before @domain. Last modified days is calcuated from today. If a feature flag has never been evaluated, then the Last evaluated value will be blank and 0 means it was evaluated today. The file is created in the **data** folder and named \"feature-flags-YYYY-MM-DD.CSV\"
 
 # Run
 Generates a .CSV file listing the feature flags configured in LaunchDarkly, for the project and environment defined in ff_config.yaml
