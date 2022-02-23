@@ -11,7 +11,7 @@ class ff_data(object):
     __params_flags = __api_url + "flags/{0}?env={1}"
     __params_flag_status = __api_url + "flag-statuses/{0}/{1}/{2}"
 
-    __csv_column = ["Key", "Environment", "On", "Last modified (days)", "Last evaluated (days)", "Created", "Updated", "Owner", "Description", "Tags"]
+    __csv_column = ["Key", "Environment", "On", "Permanent", "Last modified (days)", "Last evaluated (days)", "Created", "Updated", "Owner", "Description", "Tags"]
 
     __config = ff_config()
 
@@ -70,8 +70,9 @@ class ff_data(object):
     def __store_feature_flag_data(self, flags, rows, environment):
         for flag in flags:
             key = flag["key"]
+            permanent = flag["temporary"] == False
             description = flag["description"]
-            tags = flag["tags"]
+            tags = ", ".join(flag["tags"])
             owner = self.__get_team_name(flag["_maintainer"]["email"])
             active = flag["environments"][environment]["on"]
             created_date = self.__get_date_from_milliseconds(flag["creationDate"])
@@ -86,7 +87,7 @@ class ff_data(object):
                 if request_date:
                     days_last_evaluated = (datetime.now() - request_date).days
 
-            rows.append([key, environment, active, days_since_update, days_last_evaluated, created_date.strftime('%d/%m/%y'), updated_date.strftime('%d/%m/%y'), owner, description, tags])
+            rows.append([key, environment, active, permanent, days_since_update, days_last_evaluated, created_date.strftime('%d/%m/%y'), updated_date.strftime('%d/%m/%y'), owner, description, tags])
 
 
     def __get_feature_flags(self, environment):

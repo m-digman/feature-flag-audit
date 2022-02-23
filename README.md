@@ -33,6 +33,7 @@ Set the project and environment values to the keys that are configured in Launch
 Extracts the following fields for each feature flag configured in LaunchDarkly in to a .CSV file:
 - Key
 - On
+- Permanent
 - Last modified (days)
 - Last evaluated (days)
 - Created
